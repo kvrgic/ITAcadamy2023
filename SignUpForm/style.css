@@ -69,6 +69,7 @@ select, a, button{
 }
 table a{
     padding: 0px;
+    text-decoration: none;
 }
 .clear-float{
     clear: both;
