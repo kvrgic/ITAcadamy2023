@@ -51,6 +51,11 @@ table{
 td{
     text-align: right;
 }
+select{
+    border: none;
+    border-radius: 4px;
+    background: linear-gradient(to bottom, #eeefeb 0%, #fff 100%);
+}
 input, select{
     padding: 8px;
     color: #333333;
@@ -58,6 +63,7 @@ input, select{
     margin-top: 2px;
     font-size: 11px;
 }
+
 input{
     width: 100%;
     box-sizing: border-box;
