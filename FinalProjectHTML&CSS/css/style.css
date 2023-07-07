@@ -1,0 +1,114 @@
+body{
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover; 
+    font-family: 'Open Sans',sans-serif;
+}
+.margin-bottom{
+    margin-bottom: 15px;
+}
+#lineweb-site{
+    width: 990px;
+    box-sizing: border-box;
+    padding: 15px;
+    margin: auto;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+#header{
+    background-color: #c51417;
+    overflow: hidden;
+}
+#header h1{
+    color: #ffffff;
+    margin: 0;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 3em;
+    padding: 15px;
+    letter-spacing: 5px; 
+    float: left;
+}
+#header p{
+    color: white;
+    font-style: italic;
+    margin: 0;
+    padding: 10px;
+    font-size: 1.2em;
+    float: right;
+}
+#nav{
+    background-color: #333333;
+    overflow: hidden;
+}
+.main-nav{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.main-nav li{
+    float: left;
+}
+.main-nav li a{
+    display: block;
+    color: #ffffff;
+    font-size: .9rem;
+    text-decoration: none;
+    padding: 15px;
+    transition: background-color .5s;
+    cursor: pointer;
+}
+.main-nav li a:hover{
+    background-color: #c51417;
+}
+.favicon-nav{
+    font-size: 25px;
+    color: #ffffff;
+    float: right;
+    margin: 0;
+    padding: 10px 5px;
+    transition: color .5s;
+    cursor: pointer;
+}
+.margin-right{
+    margin-right: 15px;
+}
+.favicon-nav:hover{
+    color: #c51417;
+}
+#main, #main img{
+    width: 700px;
+    float: left;
+    height: auto;
+}
+#aside{
+    width: 240px;
+    float: right;
+}
+#aside h2{
+    font-size: 1.5em;
+    color: #ffffff;
+    background-color: #bbbbbb;
+    margin: 0px;
+    padding: 10px;
+}
+#aside img{
+    width: 100%;
+    margin-top: 15px;
+}
+#footer{
+    background-color: #333333;
+    width: 100%;
+    clear: both;
+}
+
+#footer p{
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    transform: color .5s;
+    margin: 0px;
+}
+#footer p:hover{
+    color: #bbbbbb;
+}
