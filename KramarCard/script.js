@@ -40,17 +40,12 @@ function drawElement(tag){
 function drawCarCard(cars){
 
     for (var car of cars){
-        var divCard = drawElement('div')
-        divCard.setAttribute('id','car-card')
-        divCard.onclick = function(){
-            var divRedLine = drawElement('div');
-            divRedLine.setAttribute('class', 'red-line')};
-       
-
+        var divCard = drawElement('div');
+        divCard.setAttribute('id','car-card');
         var divRedLine = drawElement('div');
-        divRedLine.setAttribute('class', 'red-line');
-       
-
+        divRedLine.setAttribute('id','red-line')
+        divCard.appendChild(divRedLine)
+           
         var image = drawElement('img');
         image.src = car.img;
 
@@ -76,7 +71,6 @@ function drawCarCard(cars){
         footerDiv.appendChild(year);
         footerDiv.appendChild(kmP)
 
-        divCard.appendChild(divRedLine);
         divCard.appendChild(image);
         divCard.appendChild(heading1);
         divCard.appendChild(mainDiv);
