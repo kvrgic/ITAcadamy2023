@@ -24,4 +24,5 @@ function signIn(){
 function signOut(){
     navigation.style.display = 'none';
     signinform.style.display = 'block';
+    incorectMess.style.display = 'none';
 }
