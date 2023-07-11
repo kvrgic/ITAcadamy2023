@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Login Form</title>
+</head>
+<body>
+    <div id="nav">
+        <img src="img/user.png">
+        <div class="email-signout">
+            <span class="show-email"></span>
+            <button class="sign-out-button" onclick="signOut()">SIGN OUT</button>
+        </div>
+    </div>
+    <div id="signin-form">
+        <a class="singinLink" target="_blank" href="#">SIGN IN<hr style="width: 50%; margin: 0 auto;"></a>
+        
+        <a class="signupLink" href="#">SIGN UP</a>
+        <br>
+        <input type="email" name="" id="email-input" placeholder="USERNAME">
+        <input type="password" name="" id="password-input" placeholder="PASSWORD">
+
+        <label class="check-box" for="checkbox"><input id="checkbox" type="checkbox">REMEMBER ME</label>
+
+        <p id="incorect-mess">Invalid Credentials!</p>
+
+        <button onclick="signIn()" class="button-signin">SIGN IN</button>
+        <a href="#" id="forgot-pass">FORGOT PASSWORD ?</a> 
+
+        
+
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
