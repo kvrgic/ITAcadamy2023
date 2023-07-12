@@ -5,38 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Login Form</title>
 </head>
 <body>
     <div id="nav">
-        <img src="img/user.png">
-        <div class="email-signout">
-            <span class="show-email"></span>
-            <button class="sign-out-button" onclick="signOut()">SIGN OUT</button>
+        <div id="navigation">
+            <img src="img/user.png">
+            <div class="name-signout">
+                <span class="show-name"></span>
+                <button class="sign-out-button" onclick="signOut()">SIGN OUT</button>
+            </div>
         </div>
-    </div>
+
+        <div class="post-blog">
+            <input type="text" name="" class="title" id="blog-title" placeholder="Enter your title">
+            <textarea placeholder="Blog story..." class="text-blog" id="blog-story"></textarea>
+            <button onclick="postNewBlog()" class="button-post-blog">POST BLOG</button>
+        </div>
+    </div>    
+
     <div id="signin-form">
-        <a class="singinLink" target="_blank" href="#">SIGN IN<hr style="width: 50%; margin: 0 auto;"></a>
         
-        <a class="signupLink" href="#">SIGN UP</a>
-        <br>
-        <input type="email" name="" id="email-input" placeholder="USERNAME">
-        <input type="password" name="" id="password-input" placeholder="PASSWORD">
+        <a class="singinLink"  href="#">SIGN IN<hr style="width: 50%; margin: 0 auto;"></a>
+        <a class="signupLink" href="#" onclick="goToSignUpForm()" style="color: #c84e6ea1;">SIGN UP</a>
+       
+        <input onkeydup ="enterSignIn(event)" class="user-data" type="email" name="" id="email-input" placeholder="EMAIL OR USERNAME">
+        <input onkeyup="enterSignIn(event)" class="user-data" type="password" name="" id="password-input" placeholder="PASSWORD">
 
         <label class="check-box" for="checkbox"><input id="checkbox" type="checkbox">REMEMBER ME</label>
 
         <p id="incorect-mess">Invalid Credentials!</p>
 
         <button onclick="signIn()" class="button-signin">SIGN IN</button>
-        <a href="#" id="forgot-pass">FORGOT PASSWORD ?</a> 
+        <a href="#" class="forgot-pass">FORGOT PASSWORD ?</a> 
+    </div>
 
+    <div id="signup-form" >
+
+        <a class="singinLink" href="#" style="color: #c84e6ea1;" onclick="goToSignInForm()">SIGN IN</a>
+        <a class="signupLink" href="#">SIGN UP<hr style="width: 50%; margin: 0 auto;"></a>
         
+        <input onkeyip="regBackToSignIn(event)" class="user-data" type="text" name="" id="r-name-input" placeholder="NAME">
+        <input onkeyup="regBackToSignIn(event)" class="user-data" type="email" name="" id="r-email-input" placeholder="EMAIL">
+        <input onkeyup="regBackToSignIn(event)" class="user-data" type="text" name="" id="r-address-input" placeholder="ADDRESS">
+        <input onkeyup="regBackToSignIn(event)" class="user-data" type="text" name="" id="r-username-input" placeholder="USERNAME">
+        <input onkeyup="regBackToSignIn(event)" class="user-data" type="password" name="" id="r-password-input" placeholder="PASSWORD">
+    
+        <button onclick="signUp()" class="button-signUp">SIGN UP</button>
 
     </div>
     
-
     <script src="script.js"></script>
 </body>
 </html>

@@ -5,13 +5,15 @@ body{
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
     letter-spacing: 1px;
+    
 }
-#signin-form{
+
+/*form style*/
+#signin-form, #signup-form{
     display: block;
     width: 250px;
     background-image: linear-gradient(rgba(21, 23, 45, 0.437), rgba(8, 7, 13, 0.75)),url('img/background3.jpg');
-
-    background-size: 100%;
+    background-size: cover;
     border-radius: 20px;
     box-shadow: 5px 10px 10px 5px rgba(0,0,0,.75) ;
     position: absolute;
@@ -21,6 +23,8 @@ body{
     padding: 20px;
     overflow: hidden; 
 }
+
+/*SignIn and SignUp link style*/
 .singinLink,.signupLink{
     display: inline-block;
     color: #e85f83;
@@ -33,9 +37,11 @@ body{
 }
 .signupLink{
     float: right;
-    color: #c84e6ea1;
+    transition: .3s;
 }
-#email-input, #password-input{
+
+/* input style */
+.user-data, .title, .text-blog{
     width: 80%;
     display: grid;
     justify-content: center;
@@ -49,13 +55,15 @@ body{
     font-weight: bold;
     border-bottom: 2px solid #e85f83;  
 }
-#email-input::placeholder, #password-input::placeholder{
+.user-data::placeholder, .title::placeholder, .text-blog::placeholder{
     color: #e85f83;
     font-weight: bold;
 }
-#email-input:focus, #password-input:focus{
+.user-data:focus, .title:focus, .text-blog:focus{
     outline: none;
 }
+
+/*Check box style*/
 .check-box{
     display: inline-block;
     color: #e85f83;
@@ -71,7 +79,9 @@ body{
     accent-color: #e85f83;
     vertical-align:middle;
 }
-.button-signin{
+
+/*SignIn and SignUp button style*/
+.button-signin, .button-signUp{
     display: block;
     background-color: #e85f83;
     color: #ffffff;
@@ -84,13 +94,18 @@ body{
     border-radius: 30px;
     transition: 0.3s;
 }
-.button-signin:hover{
+.button-signin:hover, .button-signUp:hover{
     background-color: #e85f83dc;
 }
-.button-signin:active{
+.button-signin:active, .button-signUp:active{
     background-color: #cd5172d6;
 }
-#forgot-pass{
+.button-signU{
+    margin: 0 auto;
+}
+
+/*link for forgot password style*/
+.forgot-pass{
     display: block;
     text-decoration: none;
     color: #e85f83;
@@ -100,9 +115,11 @@ body{
     word-spacing: 0px;
     transition: .3s;
 }
-#forgot-pass:active{
+.forgot-pass:active{
     color: #c84e6e;
 }
+
+/*Invalid messages style*/
 #incorect-mess{
     display: none;
     text-align: center;
@@ -111,47 +128,52 @@ body{
     font-size: 1.2em;
     letter-spacing: 1.5px;
 }
-.hidden{
-    display: none;
-}
-.visible{
-    display: block;
-}
+
+/* navigation style - after SignIn*/
 #nav{
     display: none;
-    background-color: rgba(21, 23, 45, 0.437);
+    background-color: #181818;
     width: 100%; 
-    height: 60px;
+    height: 100%;
     position: relative;
-
+}
+#navigation{
+    width: 100%;
+    height: 60px;
+    background-color: rgba(21, 23, 45, 0.437);
 }
 #nav img{
     width: 50px;
     border-radius: 50%;
     border: 2px solid #c84e6eb5;
-    position: fixed;
+    position: absolute;
     right: 0;
     margin: 5px;
-   
 }
-.email-signout{
-    width: 20%;
-    display: inline-block;
-    align-items: right;
-    padding: 5px;
-    position: fixed;
-    right: 60px;
-}
-.show-email{
+.name-signout{
     color: #c84e6e;
     font-size: .8em;
     font-weight: bold;
     letter-spacing: 0px;
     padding: 5px;
+    display: inline-block;
+    text-align: center;
+    position: absolute;
+    right: 60px;
+    
+}
+.show-name{
     display: block;
+    color: #c84e6e;
+    font-size: .8em;
+    font-weight: bold;
+    letter-spacing: 0px;
+    padding: 5px;
     text-align: center;
 }
-.sign-out-button{
+
+/*SignOut button style*/
+.sign-out-button, .button-post-blog{
     display: block;
     background-color: #e85f83;
     color: #ffffff;
@@ -164,9 +186,68 @@ body{
     transition: 0.3s;
     margin: auto;
 }
-.sign-out-button:hover{
+.sign-out-button:hover, .button-post-blog:hover{
     background-color: #e85f83dc;
 }
-.sign-out-button:active{
+.sign-out-button:active, .button-post-blog:active{
     background-color: #cd5172d6;
+}
+
+
+/* Post blog area style */
+.post-blog{
+    position: relative;
+    width: 700px;
+    height: 100%;
+    margin: auto;
+    padding: 20px;
+    overflow: hidden;
+}
+.title, .text-blog{
+    width: 95%;
+    font-size: 1.5em;
+    padding: 10px;
+}
+.text-blog{
+    height: 200px;
+    border: 2px solid #e85f83;  
+    border-top: none;
+}
+.button-post-blog{
+    padding: 15px 20px;
+    font-size: 1em;
+    float: right;
+    margin-bottom: 20px;
+}
+
+/*New post blog style*/
+.new-post{
+    display: block;
+    clear: both;
+    width: 650px;
+    height: 100%;
+    margin: 20px auto;
+    padding: 10px;
+    border: 2px solid #e85f83;
+}
+.post-title{
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 3em;
+    color: #e85f83;
+}
+.post-story {
+    text-align: justify;
+    font-size: 1.1em;
+    color: #d79eaa;
+    line-height: 140%;   
+}
+.post-date{
+    text-align: right;
+    color: #e85f83;
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 0px;
 }
