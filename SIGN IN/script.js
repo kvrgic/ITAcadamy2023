@@ -9,6 +9,10 @@ var users = [
     },
 ]
 
+var allBlogs = [];
+
+var loggedUser = {};
+
 function getValue(id){
     return document.getElementById(id).value;
 }
@@ -30,6 +34,7 @@ function signIn(){
             signinform.style.display = 'none';
             navigation.style.display = 'block'
             showEmail.innerHTML = oneUser.name;
+            loggedUser = oneUser;
             clearValue('email-input');
             clearValue('password-input');
         }else{
@@ -96,35 +101,50 @@ function regBackToSignIn(event){
 }
 
 function postNewBlog(){
-    var postBlog = document.querySelector('.post-blog');
     var titleOfBlog = getValue('blog-title')
     var storyOfBlog = getValue('blog-story');
 
-    
     if(titleOfBlog === '' || storyOfBlog === ''){
         return alert('Unesite sve podatke!')
     }
-    var newPost = document.createElement('div')
-    newPost.classList.add('new-post');
-    
-    var postTitle = document.createElement('h1');
-    postTitle.classList.add('post-title');
-    postTitle.innerHTML = titleOfBlog;
 
-    var postStory = document.createElement('p');
-    postStory.classList.add('post-story');
-    postStory.innerHTML = storyOfBlog;
+    var blog = {
+        titleOfBlog,
+        storyOfBlog,
+        blogDate: new Date(),
+        author:loggedUser.name
+    };
 
-    var date = document.createElement('p');
-    var newDate = new Date();
-    date.classList.add('post-date');
-    date.innerHTML = 'Posted: '+ newDate.toLocaleString("en-us", {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', second: "2-digit"});
-    
-    newPost.appendChild(postTitle);
-    newPost.appendChild(postStory);
-    newPost.appendChild(date);
-    postBlog.appendChild(newPost);
+    allBlogs.push(blog);
+    displayBlog();
 
     clearValue('blog-title');
     clearValue('blog-story');
+}
+
+function displayBlog(){
+    var displayBlogs = document.querySelector('.posted-blog');
+    displayBlogs.innerHTML = '';
+
+    for(var blog of allBlogs){
+        var newPost = document.createElement('div')
+        newPost.classList.add('new-post');
+
+        var postTitle = document.createElement('h1');
+        postTitle.classList.add('post-title');
+        postTitle.innerHTML = blog.titleOfBlog;
+
+        var postStory = document.createElement('p');
+        postStory.classList.add('post-story');
+        postStory.innerHTML = blog.storyOfBlog;
+
+        var dateAndName = document.createElement('p');
+        dateAndName.classList.add('post-date');
+        dateAndName.innerHTML ='Posted: '+ blog.blogDate.toLocaleString("en-us", {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', second: "2-digit"}) + ', Author: '+ blog.author;
+
+        newPost.appendChild(postTitle);
+        newPost.appendChild(postStory);
+        newPost.appendChild(dateAndName);
+        displayBlogs.appendChild(newPost);
+    } 
 }
