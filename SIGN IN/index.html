@@ -10,6 +10,7 @@
     <title>Login Form</title>
 </head>
 <body>
+    <!--Navigation - signOut, form for posted blog, div for display blog -->
     <div id="nav">
         <div id="navigation">
             <img src="img/user.png">
@@ -23,10 +24,14 @@
             <input type="text" name="" class="title" id="blog-title" placeholder="Enter your title">
             <textarea placeholder="Blog story..." class="text-blog" id="blog-story"></textarea>
             <button onclick="postNewBlog()" class="button-post-blog">POST BLOG</button>
-            <div class="posted-blog"></div>
+
+            <div class="posted-blog">
+
+            </div>
         </div>
     </div>    
 
+    <!--SignIn form-->
     <div id="signin-form">
         
         <a class="singinLink"  href="#">SIGN IN<hr style="width: 50%; margin: 0 auto;"></a>
@@ -39,10 +44,11 @@
 
         <p id="incorect-mess">Invalid Credentials!</p>
 
-        <button onclick="signIn()" class="button-signin">SIGN IN</button>
+        <button onclick="signIn({})" class="button-signin">SIGN IN</button>
         <a href="#" class="forgot-pass">FORGOT PASSWORD ?</a> 
     </div>
 
+    <!--SignUp form-->
     <div id="signup-form" >
 
         <a class="singinLink" href="#" style="color: #c84e6ea1;" onclick="goToSignInForm()">SIGN IN</a>

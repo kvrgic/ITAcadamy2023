@@ -23,6 +23,9 @@ body{
     padding: 20px;
     overflow: hidden; 
 }
+#signup-form{
+    display: none;
+}
 
 /*SignIn and SignUp link style*/
 .singinLink,.signupLink{
