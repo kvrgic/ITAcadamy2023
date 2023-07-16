@@ -25,18 +25,19 @@ function clearValue(id){
 
 /* If user logged - exists in localStorage, when we refresh the page - user stay logged */
 function isUserLogged(){
-    var userData = localStorage.getItem('loggedUser');
+    var loggedUserData = localStorage.getItem('loggedUser');
 
-    if(userData){
-        signIn(JSON.parse(userData));
+    if(loggedUserData){
+        var user = JSON.parse(loggedUserData)
+        signIn(user.email, user.password);
     }
 }
 isUserLogged();
 
 /* Sign in function */
-function signIn(user){
-    var email = user.email || getValue('email-input');
-    var password = user.password || getValue('password-input');
+function signIn(p_email,p_password){
+    var email = p_email || getValue('email-input');
+    var password = p_password|| getValue('password-input');
 
     var signinform = document.getElementById('signin-form');
     var navigation = document.getElementById('nav');
@@ -64,6 +65,7 @@ function signIn(user){
             incorectMess.style.display = 'block';
         }
     } 
+    displayBlog();
 }
 
 /* Sign out function*/
@@ -89,6 +91,9 @@ function goToSignUpForm(){
 
     signinform.style.display = 'none';
     signupform.style.display = 'block';
+
+    clearValue('email-input');
+    clearValue('password-input');
 }
 
 /* Function on button SIGNIN - go to sign in form*/
@@ -98,6 +103,12 @@ function goToSignInForm(){
 
     signinform.style.display = 'block';
     signupform.style.display = 'none';
+
+    clearValue('r-name-input');
+    clearValue('r-email-input');
+    clearValue('r-address-input');
+    clearValue('r-username-input');
+    clearValue('r-password-input');
 }
 
 /* User ragistration, get input value, push to users array and local storage, clear input value, and call function goToSignInForm */
@@ -132,7 +143,7 @@ function signUp(){
 /* Function on all signIn or signUp input - logged or registration with enter key */
 function enterSignIn(event){
     if(event.keyCode === 13){
-        signIn({});
+        signIn();
     }
 }
 function regBackToSignIn(event){
@@ -158,18 +169,27 @@ function postNewBlog(){
     };
 
     allBlogs.push(blog);
+    localStorage.setItem('allBlogs', JSON.stringify(allBlogs));
+
     displayBlog();
 
     clearValue('blog-title');
     clearValue('blog-story');
 }
 
-/* Get div element from the html and clean div, use one blog of the allBlogs array, create a new div for the post, title, post story, date and name of user posting the blog, appendChild to the html div */
+/* Get div element from the html and clean div, use one blog of the allBlogs array, create a new div for the post, title, post story, date and name of user posting the blog, appendChild to the html div, and search function */
 function displayBlog(){
+    var blogsData = localStorage.getItem('allBlogs');
+    if(blogsData){
+        allBlogs = JSON.parse(blogsData);
+    }
+    renderBlogs(allBlogs);
+}
+   
+function renderBlogs(blogs){
     var displayBlogs = document.querySelector('.posted-blog');
     displayBlogs.innerHTML = '';
-
-    for(var blog of allBlogs){
+    for(var blog of blogs){
         var newPost = document.createElement('div')
         newPost.classList.add('new-post');
 
@@ -183,11 +203,28 @@ function displayBlog(){
 
         var dateAndName = document.createElement('p');
         dateAndName.classList.add('post-date');
-        dateAndName.innerHTML ='Posted: '+ blog.blogDate.toLocaleString("en-us", {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', second: "2-digit"}) + ', Author: '+ blog.author;
+        dateAndName.innerHTML =`Posted: `+ new Date(blog.blogDate).toLocaleString("pt-PT") + ', Author: ' + blog.author;
 
         newPost.appendChild(postTitle);
         newPost.appendChild(postStory);
         newPost.appendChild(dateAndName);
         displayBlogs.appendChild(newPost);
-    } 
+    }
 }
+function searchBlogs(){
+    var displayBlogs = document.querySelector('.posted-blog');
+    displayBlogs.innerHTML = '';
+
+    var searchText = document.getElementById('search-blog').value.toUpperCase();
+    
+    var filtereBlogs = [];
+    for(var blog of allBlogs){
+        var allTitle = blog.titleOfBlog.toUpperCase();
+        var allText = blog.storyOfBlog.toUpperCase();
+        if(allTitle.includes(searchText) || allText.includes(searchText)){
+            filtereBlogs.push(blog);
+        }
+    }
+    renderBlogs(filtereBlogs);
+}
+    

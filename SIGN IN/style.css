@@ -44,7 +44,7 @@ body{
 }
 
 /* input style */
-.user-data, .title, .text-blog{
+.user-data, .title, .text-blog, .search{
     width: 80%;
     display: grid;
     justify-content: center;
@@ -58,11 +58,11 @@ body{
     font-weight: bold;
     border-bottom: 2px solid #e85f83;  
 }
-.user-data::placeholder, .title::placeholder, .text-blog::placeholder{
+.user-data::placeholder, .title::placeholder, .text-blog::placeholder, .search::placeholder{
     color: #e85f83;
     font-weight: bold;
 }
-.user-data:focus, .title:focus, .text-blog:focus{
+.user-data:focus, .title:focus, .text-blog:focus, .search:focus{
     outline: none;
 }
 
@@ -206,10 +206,13 @@ body{
     padding: 20px;
     overflow: hidden;
 }
-.title, .text-blog{
+.title, .text-blog, .search{
     width: 95%;
     font-size: 1.5em;
     padding: 10px;
+}
+.search{
+    clear: both;
 }
 .text-blog{
     height: 200px;

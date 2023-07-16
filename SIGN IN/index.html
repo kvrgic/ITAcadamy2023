@@ -24,7 +24,7 @@
             <input type="text" name="" class="title" id="blog-title" placeholder="Enter your title">
             <textarea placeholder="Blog story..." class="text-blog" id="blog-story"></textarea>
             <button onclick="postNewBlog()" class="button-post-blog">POST BLOG</button>
-
+            <input onkeyup="searchBlogs()" type="text" id="search-blog" class="search" placeholder="Search for blog...">
             <div class="posted-blog">
 
             </div>
@@ -44,7 +44,7 @@
 
         <p id="incorect-mess">Invalid Credentials!</p>
 
-        <button onclick="signIn({})" class="button-signin">SIGN IN</button>
+        <button onclick="signIn()" class="button-signin">SIGN IN</button>
         <a href="#" class="forgot-pass">FORGOT PASSWORD ?</a> 
     </div>
 
