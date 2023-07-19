@@ -11,7 +11,6 @@ var users = [
 
 /* Array - all posted blogs*/
 var allBlogs = [];
-
 /* Logged user */
 var loggedUser = {};
 
@@ -82,6 +81,8 @@ function signOut(){
 
     clearValue('blog-title');
     clearValue('blog-story');
+    clearValue('search-blog');
+    clearValue('write-comment');
 }
 
 /* Function on button SIGNUP - go to sign up form*/
@@ -154,7 +155,7 @@ function regBackToSignIn(event){
 
 /* function on button POST BLOG, get title and blog story value, push value in blog object, push object in allBlogs array, call displayBlogs function and clear title and blog story input*/
 function postNewBlog(){
-    var titleOfBlog = getValue('blog-title')
+    var titleOfBlog = getValue('blog-title');
     var storyOfBlog = getValue('blog-story');
 
     if(titleOfBlog === '' || storyOfBlog === ''){
@@ -165,7 +166,8 @@ function postNewBlog(){
         titleOfBlog,
         storyOfBlog,
         blogDate: new Date(),
-        author:loggedUser.name
+        author:loggedUser.name,
+        comments: []
     };
 
     allBlogs.push(blog);
@@ -192,7 +194,7 @@ function renderBlogs(blogs){
     for(var blog of blogs){
         var newPost = document.createElement('div')
         newPost.classList.add('new-post');
-
+        
         var postTitle = document.createElement('h1');
         postTitle.classList.add('post-title');
         postTitle.innerHTML = blog.titleOfBlog;
@@ -205,10 +207,15 @@ function renderBlogs(blogs){
         dateAndName.classList.add('post-date');
         dateAndName.innerHTML =`Posted: `+ new Date(blog.blogDate).toLocaleString("pt-PT") + ', Author: ' + blog.author;
 
+        newPost.appendChild(addDeleteBtn(blog))
         newPost.appendChild(postTitle);
         newPost.appendChild(postStory);
         newPost.appendChild(dateAndName);
+
         displayBlogs.appendChild(newPost);
+        showComments(blog.comments);
+        displayBlogs.appendChild(addComment(blog));
+        
     }
 }
 function searchBlogs(){
@@ -227,4 +234,80 @@ function searchBlogs(){
     }
     renderBlogs(filtereBlogs);
 }
-    
+
+function addComment(blog){
+    var divComment = document.createElement('div');
+    divComment.classList.add('post-comment');
+
+    var inputComment = document.createElement('input');
+    inputComment.placeholder = 'Write a comment';
+    inputComment.classList.add('input-comment');
+    inputComment.addEventListener('keyup', function(e){
+        var commentText = e.target.value;
+        if(e.keyCode !== 13) return;
+        
+        var comment = {
+            commentText,
+            author: loggedUser.name,
+            postedDate: new Date(),
+        };
+        if(!blog.comments){
+            blog.comments = [];
+        }
+        blog.comments.push(comment);
+        localStorage.setItem('allBlogs', JSON.stringify(allBlogs));     
+        inputComment.value = '';
+
+        renderBlogs(allBlogs);
+    });
+
+    divComment.appendChild(inputComment);
+
+    return divComment
+}
+
+function showComments(comments){
+    var displayBlogs = document.querySelector('.posted-blog');
+
+    for(var comment of comments){
+        if(!comment) return;
+        var divComment = document.createElement('div')
+        divComment.classList.add('post-comment');
+        divComment.classList.add('border-comment');
+        var commentLine = document.createElement('hr');
+        commentLine.style = 'width: 50%; margin: 0 auto; border:1px solid #e85f83';
+
+        var commentText = document.createElement('p');
+        commentText.classList.add('post-story');
+        commentText.innerHTML = comment.commentText;
+
+        var dateAndName = document.createElement('p');
+        dateAndName.classList.add('post-date');
+        dateAndName.innerHTML = new Date(comment.postedDate).toLocaleString("pt-PT") +`, `+ comment.author + ' says: ' ;
+        dateAndName.style.textAlign = 'left'
+
+        divComment.appendChild(dateAndName);
+        divComment.appendChild(commentText);
+        divComment.appendChild(commentLine);
+
+        displayBlogs.appendChild(divComment);
+    }
+}
+
+function addDeleteBtn(blog){
+    var buttonDelete = document.createElement('button');
+    buttonDelete.classList.add('delete-btn');
+    buttonDelete.innerHTML = 'X';
+    buttonDelete.addEventListener('click', function(e){
+        if(blog.author === loggedUser.name){
+            var blogIndex = allBlogs.indexOf(blog);
+            allBlogs.splice(blogIndex, 1);
+            localStorage.setItem('allBlogs', JSON.stringify(allBlogs));
+            displayBlog();
+        }else{
+            alert(`You can't delete this blog`);
+        }
+    });
+
+    return buttonDelete;
+}
