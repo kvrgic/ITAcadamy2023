@@ -5,7 +5,7 @@ var users = [
         email: 'kvrgicaida95@gmail.com',
         address: 'Trg Heroja 39',
         username: 'Aida123!',
-        password: '123456',   
+        password: '123456',  
     },
 ]
 
@@ -298,14 +298,15 @@ function addDeleteBtn(blog){
     var buttonDelete = document.createElement('button');
     buttonDelete.classList.add('delete-btn');
     buttonDelete.innerHTML = 'X';
-    buttonDelete.addEventListener('click', function(e){
+    buttonDelete.style.display = loggedUser.name === blog.author ? 'block' : 'none';
+    buttonDelete.addEventListener('click', function(){
         if(blog.author === loggedUser.name){
             var blogIndex = allBlogs.indexOf(blog);
+            var response = confirm('Are you sure?');
+            if(!response) return;
             allBlogs.splice(blogIndex, 1);
             localStorage.setItem('allBlogs', JSON.stringify(allBlogs));
             displayBlog();
-        }else{
-            alert(`You can't delete this blog`);
         }
     });
 
