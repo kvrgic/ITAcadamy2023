@@ -179,7 +179,7 @@ function postNewBlog(){
     clearValue('blog-story');
 }
 
-/* Get div element from the html and clean div, use one blog of the allBlogs array, create a new div for the post, title, post story, date and name of user posting the blog, appendChild to the html div, and search function */
+/* Get local storage information and allBlogs array = that information.  */
 function displayBlog(){
     var blogsData = localStorage.getItem('allBlogs');
     if(blogsData){
@@ -187,8 +187,10 @@ function displayBlog(){
     }
     renderBlogs(allBlogs);
 }
-   
+
+/*div element from the html and clean div, use one blog of the allBlogs array, create a new div for the post, title, post story, date and name of user posting the blog, appendChild to the html div, and  call showComments function, apend delete button and append addComment area*/ 
 function renderBlogs(blogs){
+    blogs.sort((a,b) => new Date(b.blogDate) - new Date(a.blogDate));
     var displayBlogs = document.querySelector('.posted-blog');
     displayBlogs.innerHTML = '';
     for(var blog of blogs){
@@ -214,10 +216,11 @@ function renderBlogs(blogs){
 
         displayBlogs.appendChild(newPost);
         showComments(blog.comments);
-        displayBlogs.appendChild(addComment(blog));
-        
+        displayBlogs.appendChild(addComment(blog)); 
     }
 }
+
+/* Get and clead displayBlogs area, use value of input searchText, create empty array filtereBlogs, iterate allBlogs, and push in filtereBlog array, call RenderBlogs function*/
 function searchBlogs(){
     var displayBlogs = document.querySelector('.posted-blog');
     displayBlogs.innerHTML = '';
@@ -235,6 +238,7 @@ function searchBlogs(){
     renderBlogs(filtereBlogs);
 }
 
+/* Function addComent, created comment object and push in allBlogs object */
 function addComment(blog){
     var divComment = document.createElement('div');
     divComment.classList.add('post-comment');
@@ -265,7 +269,7 @@ function addComment(blog){
 
     return divComment
 }
-
+/* Show comment on displey */
 function showComments(comments){
     var displayBlogs = document.querySelector('.posted-blog');
 
@@ -294,6 +298,7 @@ function showComments(comments){
     }
 }
 
+/* Delete button function */
 function addDeleteBtn(blog){
     var buttonDelete = document.createElement('button');
     buttonDelete.classList.add('delete-btn');
@@ -309,6 +314,5 @@ function addDeleteBtn(blog){
             displayBlog();
         }
     });
-
     return buttonDelete;
 }

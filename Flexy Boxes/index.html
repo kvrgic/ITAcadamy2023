@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="flexStyle.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="outer-wrap">
+
+        <header>
+            <h1>
+                <img src="flexy-boxes.svg" alt="flex-logo">
+            </h1>
+            <p>flexbox playground and code generator</p>
+        </header>
+
+        <div class="main" data-flex-direction="row">
+            <div class="pointer-wrapper">
+                <div class="pointer"></div>
+            </div>
+            <div id="main-div" class="flex-container flex-container-style fixed-height">
+                <div class="flex-item">
+                    <span contenteditable=""></span>
+                    <span class="counter">1</span>
+                </div>
+                <div class="flex-item">
+                    <span contenteditable=""></span>
+                    <span class="counter">2</span>
+                </div>
+                <div class="flex-item">
+                    <span contenteditable=""></span>
+                    <span class="counter">3</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls flex-container-style">
+            <form action method="get">
+                <fieldset class="flex-container-fields">
+                    <h2 class="title">flex container</h2>
+                    <ol class="properties">
+                        <li>
+                            <div class="property">
+                                "display: "
+                            </div>
+                            <div class="values">
+                                <select onchange="displayOption()" name="display">
+                                    <option selected>flex</option>
+                                    <option>inline-flex</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="property">
+                                "flex-direction: "
+                            </div>
+                            <div class="values">
+                                <select onchange="flexDirectionOption()" name="flex-direction">
+                                    <option selected>row</option>
+                                    <option>row-reverse</option>
+                                    <option>column</option>
+                                    <option>column-reverse</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="property">
+                                "flex-wrap: "
+                            </div>
+                            <div class="values">
+                                <select onchange="flexWrapOption()" name="flex-wrap">
+                                    <option selected>nowrap</option>
+                                    <option>wrap</option>
+                                    <option>wrap-reverse</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="property">
+                                "justify-content: "
+                            </div>
+                            <div class="values">
+                                <select onchange="justifyContentOption()" name="justify-content">
+                                    <option selected>flex-start</option>
+                                    <option>flex-end</option>
+                                    <option>center</option>
+                                    <option>space-between</option>
+                                    <option>space-around</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="property">
+                                "align-items: "
+                            </div>
+                            <div class="values">
+                                <select onchange="alignItemsOption()" name="align-items">
+                                    <option selected>flex-start</option>
+                                    <option>flex-end</option>
+                                    <option>center</option>
+                                    <option>baseline</option>
+                                    <option>stretch</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="property">
+                                "align-content: "
+                            </div>
+                            <div class="values">
+                                <select onchange="alignContentOption()"  name="align-content">
+                                    <option selected>flex-start</option>
+                                    <option>flex-end</option>
+                                    <option>center</option>
+                                    <option>space-between</option>
+                                    <option>space-around</option>
+                                    <option>stretch</option>
+                                </select>
+                            </div>
+                        </li>
+                    </ol>
+                </fieldset>
+                <fieldset>
+                    <h2 class="title">flex items</h2>
+                    <ol class="flex-itemx">
+                        <li onchange="changeDivNth1()" class="flex-item">
+                            <ol class="properties">
+                               <li>
+                                    <div class="property">"order: "</div>
+                                    <div class="values">
+                                        <input type="text" name="order[]" class="txt" value="0" size="3">
+                                    </div>
+                               </li> 
+                               <li>
+                                <div class="property">"flex: "</div>
+                                <div class="values">
+                                    <input type="text" name="flex-grow[]" class="txt" value="0" size="3">
+                                    <input type="text" name="flex-shrink[]" class="txt" value="1" size="3">
+                                    <input type="text" name="flex-basic[]" class="txt" value="auto" size="5">
+                                </div>
+                                </li> 
+                                <li>
+                                    <div class="property">"align-self: "</div>
+                                    <div class="values">
+                                        <select name="align-self[]">
+                                            <option selected>auto</option>
+                                            <option>flex-start</option>
+                                            <option>flex-end</option>
+                                            <option>center</option>
+                                            <option>baseline</option>
+                                            <option>stretch</option>
+                                        </select>
+                                    </div>
+                                </li>
+                            </ol>
+                        </li> 
+                        <li class="flex-item" onchange="changeDivNth2()">
+                            <ol class="properties">
+                               <li>
+                                    <div class="property">"order: "</div>
+                                    <div class="values">
+                                        <input type="text" name="order[]" class="txt" value="0" size="3">
+                                    </div>
+                               </li> 
+                               <li>
+                                <div class="property">"flex: "</div>
+                                <div class="values">
+                                    <input type="text" name="flex-grow[]" class="txt" value="0" size="3">
+                                    <input type="text" name="flex-shrink[]" class="txt" value="1" size="3">
+                                    <input type="text" name="flex-basic[]" class="txt" value="auto" size="5">
+                                </div>
+                                </li> 
+                                <li>
+                                    <div class="property">"align-self: "</div>
+                                    <div class="values">
+                                        <select name="align-self[]">
+                                            <option selected>auto</option>
+                                            <option>flex-start</option>
+                                            <option>flex-end</option>
+                                            <option>center</option>
+                                            <option>baseline</option>
+                                            <option>stretch</option>
+                                        </select>
+                                    </div>
+                                </li>
+                            </ol>
+                        </li>
+                        <li class="flex-item" onchange="changeDivNth3()">
+                            <ol class="properties">
+                               <li>
+                                    <div class="property">"order: "</div>
+                                    <div class="values">
+                                        <input type="text" name="order[]" class="txt" value="0" size="3">
+                                    </div>
+                               </li> 
+                               <li>
+                                <div class="property">"flex: "</div>
+                                <div class="values">
+                                    <input type="text" name="flex-grow[]" class="txt" value="0" size="3">
+                                    <input type="text" name="flex-shrink[]" class="txt" value="1" size="3">
+                                    <input type="text" name="flex-basic[]" class="txt" value="auto" size="5">
+                                </div>
+                                </li> 
+                                <li>
+                                    <div class="property">"align-self: "</div>
+                                    <div class="values">
+                                        <select name="align-self[]">
+                                            <option selected>auto</option>
+                                            <option>flex-start</option>
+                                            <option>flex-end</option>
+                                            <option>center</option>
+                                            <option>baseline</option>
+                                            <option>stretch</option>
+                                        </select>
+                                    </div>
+                                </li>
+                            </ol>
+                        </li>
+                    </ol>
+                </fieldset>
+            </form>
+            <style id="flex-style">
+                .flex-container{
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    align-content: flex-start;
+                }
+                .flex-item:nth-child(1){
+                    order: 0;
+                    flex: 0 1 auto;
+                    align-self: auto;
+                }
+                .flex-item:nth-child(2){
+                    order: 0;
+                    flex: 0 1 auto;
+                    align-self: auto;
+                }
+                .flex-item:nth-child(3){
+                    order: 0;
+                    flex: 0 1 auto;
+                    align-self: auto;
+                }
+            </style>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

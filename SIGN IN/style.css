@@ -144,6 +144,8 @@ body{
     width: 100%;
     height: 60px;
     background-color: rgba(21, 23, 45, 0.437);
+    background-image: linear-gradient(to right,rgba(16, 17, 29, 0.437), rgba(0, 0, 0, 0.953)),url('img/navBackground.jpg');
+    background-size: cover;
 }
 #nav img{
     width: 50px;
